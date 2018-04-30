@@ -9,9 +9,6 @@ import sys
 #   Convert to use logger
 #   Make exceptions more specific
 #   Handle all errors
-#   Support policy with list of targets per rule
-#   If no config, output empty ([]) variable structures
-# Build team ID lists variable
 
 # Read json file (escalation-rules.json) with
 #   multiple service sets
@@ -91,10 +88,9 @@ try:
     with open(config_file) as f:
         config = json.load(f)
 except IOError:
-    # TODO: set default config instead of failing
+    print("ERROR: Config file not found. Creating blank variables")
     config = { "escalation-rules":[], "teams":[] }
-    print("ERROR: File not found")
-    sys.exit(2)
+    #sys.exit(2)
 #except ValueError:
     # JSONDecodeError
     # create failures and verify error type raised

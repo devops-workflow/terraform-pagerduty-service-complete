@@ -7,21 +7,34 @@
 #   Script to manage Slack channels
 # TF Module to setup/deploy lambda service monitor for service
 
+module "enabled" {
+  source  = "devops-workflow/boolean/local"
+  version = "0.1.1"
+  value   = "${var.enabled}"
+}
+
+locals {
+  enabled = "${module.enabled.value && length(var.escalation_rules) > 0 ? 1 : 0}"
+}
+
 /*
 data "pagerduty_extension_schema" "slack" {
   name = "slack"
 }
 /**/
+
 data "pagerduty_vendor" "cloudwatch" {
-  name = "Cloudwatch"
+  count = "${local.enabled}"
+  name  = "Cloudwatch"
 }
 
 data "pagerduty_vendor" "datadog" {
-  name = "Datadog"
+  count = "${local.enabled}"
+  name  = "Datadog"
 }
 
 resource "pagerduty_escalation_policy" "this" {
-  #count     = "${length(keys(var.escalation_rules))}"
+  count       = "${local.enabled}"
   name        = "${var.policy_name}"
   description = "${var.policy_description}"
   num_loops   = "${var.policy_loops}"
@@ -30,30 +43,34 @@ resource "pagerduty_escalation_policy" "this" {
 }
 
 resource "pagerduty_service" "this" {
+  count                   = "${local.enabled}"
   name                    = "${var.service_name}"
   description             = "${var.service_description}"
   auto_resolve_timeout    = "${var.auto_resolve_timeout}"
   acknowledgement_timeout = "${var.acknowledgement_timeout}"
-  escalation_policy       = "${pagerduty_escalation_policy.this.id}"
+  escalation_policy       = "${element(concat(pagerduty_escalation_policy.this.*.id, list("")), 0)}"
   alert_creation          = "create_alerts_and_incidents"
 }
 
 resource "pagerduty_service_integration" "cloudwatch" {
-  name    = "${data.pagerduty_vendor.cloudwatch.name}"
-  service = "${pagerduty_service.this.id}"
-  vendor  = "${data.pagerduty_vendor.cloudwatch.id}"
+  count   = "${local.enabled}"
+  name    = "${element(concat(data.pagerduty_vendor.cloudwatch.*.name, list("")), 0)}"
+  service = "${element(concat(pagerduty_service.this.*.id, list("")), 0)}"
+  vendor  = "${element(concat(data.pagerduty_vendor.cloudwatch.*.id, list("")), 0)}"
 }
 
 resource "pagerduty_service_integration" "datadog" {
-  name    = "${data.pagerduty_vendor.datadog.name}"
-  service = "${pagerduty_service.this.id}"
-  vendor  = "${data.pagerduty_vendor.datadog.id}"
+  count   = "${local.enabled}"
+  name    = "${element(concat(data.pagerduty_vendor.datadog.*.name, list("")), 0)}"
+  service = "${element(concat(pagerduty_service.this.*.id, list("")), 0)}"
+  vendor  = "${element(concat(data.pagerduty_vendor.datadog.*.id, list("")), 0)}"
 }
 
 resource "pagerduty_service_integration" "service_monitor" {
+  count   = "${local.enabled}"
   name    = "Lambda AWS Service Monitor"
   type    = "events_api_v2_inbound_integration"
-  service = "${pagerduty_service.this.id}"
+  service = "${element(concat(pagerduty_service.this.*.id, list("")), 0)}"
 }
 
 # Attributes: id, integration_key, html_url
@@ -122,3 +139,4 @@ resource "pagerduty_extension" "slack"{
   "endpoint_url": null
 },
 /**/
+
