@@ -1,0 +1,15 @@
+{
+  "escalation-rules": [
+    {
+      "escalation_delay": "11",
+      "targets": [
+        [
+          "snemetz@wiser.com"
+        ]
+      ]
+    }
+  ],
+  "teams": [
+    "DevOps - Wiser"
+  ]
+}

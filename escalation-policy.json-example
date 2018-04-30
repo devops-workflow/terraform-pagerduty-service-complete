@@ -1,0 +1,27 @@
+{
+  "escalation-rules": [
+    {
+      "escalation_delay": "11",
+      "targets": [
+        [
+          "user1@example.com",
+          "Schedule1"
+        ],
+        [
+          "schedule2"
+        ]
+      ]
+    },
+    {
+      "escalation_delay": "12",
+      "targets": [
+        ["user2@corp.com"],
+        ["schedule2"]
+      ]
+    }
+  ],
+  "teams": [
+    "team1",
+    "team2"
+  ]
+}
