@@ -72,47 +72,47 @@ resource "pagerduty_extension" "slack"{
 
 /*
 {
-  "name": "Slack-Prod-PMS",
+  "name": "Slack-Channel-X",
   "extension_objects": [
     {
-      "self": "https://api.pagerduty.com/services/PWD24BW",
+      "self": "https://api.pagerduty.com/services/PWDXXXX",
       "type": "service_reference",
-      "id": "PWD24BW",
-      "html_url": "https://wiser.pagerduty.com/services/PWD24BW",
-      "summary": "[Service] Cupid (PMS)"
+      "id": "PWDXXXX",
+      "html_url": "https://company.pagerduty.com/services/PWDXXXX",
+      "summary": "[Service] Channel X"
     }
   ],
-  "authorization_url": "https://app.pagerduty.com/slack_oauth?webhook=PL6RC8G",
+  "authorization_url": "https://app.pagerduty.com/slack_oauth?webhook=PL6XXXX",
   "type": "webhook",
-  "self": "https://api.pagerduty.com/webhooks/PL6RC8G",
-  "summary": "Slack-Prod-PMS",
+  "self": "https://api.pagerduty.com/webhooks/PL6XXXX",
+  "summary": "Slack-Channel-X",
   "html_url": null,
-  "id": "PL6RC8G",
+  "id": "PL6XXXX",
   "authorized": true,
   "extension_schema": {
-    "self": "https://api.pagerduty.com/extension_schemas/PD8SURB",
+    "self": "https://api.pagerduty.com/extension_schemas/PD8XXXX",
     "type": "extension_schema_reference",
-    "id": "PD8SURB",
+    "id": "PD8XXXX",
     "html_url": null,
     "summary": "Slack"
   },
   "config": {
     "ok": true,
-    "user_id": "U6SC99Q0N",
-    "access_token": "xoxp-2947366406-230417330022-352329098946-49592e6b5ab38d9949c9d7c840c3b384",
+    "user_id": "U6SCXXXX",
+    "access_token": "slack token",
     "bot": {
-      "bot_user_id": "U2P67CDNZ"
+      "bot_user_id": "U2P6XXXX"
     },
     "incoming_webhook": {
-      "url": "https://hooks.slack.com/services/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",
-      "channel_id": "CAC0BCVC1",
-      "channel": "#mon-prod-pms",
-      "configuration_url": "https://wiser.slack.com/services/BACDNJ919"
+      "url": "https://hooks.slack.com/services/TTTTTTTT/BBBBBBBB/xxxxxx",
+      "channel_id": "CAC0BXXXX",
+      "channel": "#mon-channel-x",
+      "configuration_url": "https://company.slack.com/services/BACDNXXXX"
     },
     "restrict": "any",
-    "team_id": "T02TVASBY",
+    "team_id": "TTTTTTT",
     "scope": "identify,bot,incoming-webhook,channels:read,groups:read,im:read,users:read,users:read.email,chat:write:bot,groups:write",
-    "team_name": "Wiser",
+    "team_name": "Developers",
     "notify_types": {
       "assignments": true,
       "resolve": true,
@@ -122,4 +122,3 @@ resource "pagerduty_extension" "slack"{
   "endpoint_url": null
 },
 /**/
-
