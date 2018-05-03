@@ -1,6 +1,6 @@
 # escalation-policy.json
 
-Currently Terraform is not capable of dynamically created the data structure needed to define a Pagerduty escalation policy. So, a [json file](escalation-policy.json-example) is used to specify the escalation policy details and a script does lookups in Pagerduty for detail, then creates variables in HCL format for Terraform to consume.
+Currently Terraform is not capable of dynamically created the data structure needed to define a Pagerduty escalation policy. So, a [json file](escalation-policy.json-example) is used to specify the escalation policy details and a script does lookups in Pagerduty for details, then creates variables in HCL format for Terraform to consume.
 
 The [json file](escalation-policy.json-example) contains details for 2 variables: escalation-rules and teams
 
@@ -8,7 +8,7 @@ Escalation-rules is a list of maps. Each map defines an escalation rule. Each es
 
 Teams is a list of team names. These will be looked up in Pagerduty and ignored if not found.
 
-Both variables are required. If team are not being used, use "teams": []
+Both variables are required. If teams are not being used, use "teams": []
 
 [Example](escalation-policy.json-example):
 
