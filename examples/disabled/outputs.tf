@@ -1,3 +1,8 @@
+output "cloudwatch_endpoint" {
+  description = "Endpoint for webhook events (Integration URL)"
+  value       = "${module.disabled.cloudwatch_endpoint}"
+}
+
 output "cloudwatch_id" {
   description = "AWS Cloudwatch integration ID"
   value       = "${module.disabled.cloudwatch_id}"
@@ -39,4 +44,3 @@ output "service_monitor_key" {
 }
 
 #slack_id
-

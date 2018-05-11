@@ -1,3 +1,8 @@
+output "cloudwatch_endpoint" {
+  description = "Endpoint for webhook events (Integration URL)"
+  value       = "${element(concat(pagerduty_service_integration.cloudwatch.*.html_url, list("")), 0)}"
+}
+
 output "cloudwatch_id" {
   description = "AWS Cloudwatch integration ID"
   value       = "${element(concat(pagerduty_service_integration.cloudwatch.*.id, list("")), 0)}"
@@ -39,4 +44,3 @@ output "service_monitor_key" {
 }
 
 #slack_id
-
