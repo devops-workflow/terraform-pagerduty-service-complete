@@ -9,7 +9,7 @@
 
 module "enabled" {
   source  = "devops-workflow/boolean/local"
-  version = "0.1.1"
+  version = "0.1.2"
   value   = "${var.enabled}"
 }
 
@@ -92,24 +92,24 @@ resource "pagerduty_extension" "slack"{
   "name": "Slack-Channel-X",
   "extension_objects": [
     {
-      "self": "https://api.pagerduty.com/services/PWDXXXX",
+      "self": "https://api.pagerduty.com/services/PWXXXXX",
       "type": "service_reference",
-      "id": "PWDXXXX",
-      "html_url": "https://company.pagerduty.com/services/PWDXXXX",
+      "id": "PWXXXXX",
+      "html_url": "https://company.pagerduty.com/services/PWXXXXX",
       "summary": "[Service] Channel X"
     }
   ],
-  "authorization_url": "https://app.pagerduty.com/slack_oauth?webhook=PL6XXXX",
+  "authorization_url": "https://app.pagerduty.com/slack_oauth?webhook=PLXXXXX",
   "type": "webhook",
-  "self": "https://api.pagerduty.com/webhooks/PL6XXXX",
+  "self": "https://api.pagerduty.com/webhooks/PLXXXXX",
   "summary": "Slack-Channel-X",
   "html_url": null,
-  "id": "PL6XXXX",
+  "id": "PLXXXXX",
   "authorized": true,
   "extension_schema": {
-    "self": "https://api.pagerduty.com/extension_schemas/PD8XXXX",
+    "self": "https://api.pagerduty.com/extension_schemas/PDXXXXX",
     "type": "extension_schema_reference",
-    "id": "PD8XXXX",
+    "id": "PDXXXXX",
     "html_url": null,
     "summary": "Slack"
   },
@@ -118,13 +118,13 @@ resource "pagerduty_extension" "slack"{
     "user_id": "U6SCXXXX",
     "access_token": "slack token",
     "bot": {
-      "bot_user_id": "U2P6XXXX"
+      "bot_user_id": "U2XXXXXX"
     },
     "incoming_webhook": {
       "url": "https://hooks.slack.com/services/TTTTTTTT/BBBBBBBB/xxxxxx",
-      "channel_id": "CAC0BXXXX",
+      "channel_id": "CAXXXXXXX",
       "channel": "#mon-channel-x",
-      "configuration_url": "https://company.slack.com/services/BACDNXXXX"
+      "configuration_url": "https://company.slack.com/services/BAXXXXXXX"
     },
     "restrict": "any",
     "team_id": "TTTTTTT",
